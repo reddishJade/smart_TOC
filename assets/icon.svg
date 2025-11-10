@@ -1,0 +1,32 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="64" cy="64" r="60" fill="#1a73e8" stroke="#1557b0" stroke-width="2"/>
+
+  <!-- 文档主体 -->
+  <rect x="38" y="28" width="52" height="72" rx="4" fill="#ffffff"/>
+
+  <!-- 文档折角 -->
+  <path d="M 80 28 L 90 38 L 80 38 Z" fill="#f0f0f0"/>
+
+  <!-- 标题行 -->
+  <rect x="44" y="40" width="40" height="6" rx="2" fill="#1a73e8" opacity="0.8"/>
+
+  <!-- 目录项1 -->
+  <circle cx="48" cy="56" r="2" fill="#666666"/>
+  <rect x="54" y="54" width="28" height="4" rx="1" fill="#999999"/>
+
+  <!-- 目录项2 (缩进) -->
+  <circle cx="48" cy="66" r="2" fill="#666666"/>
+  <rect x="62" y="64" width="20" height="4" rx="1" fill="#999999"/>
+
+  <!-- 目录项3 (缩进) -->
+  <circle cx="48" cy="76" r="2" fill="#666666"/>
+  <rect x="62" y="74" width="20" height="4" rx="1" fill="#999999"/>
+
+  <!-- 目录项4 -->
+  <circle cx="48" cy="86" r="2" fill="#666666"/>
+  <rect x="54" y="84" width="28" height="4" rx="1" fill="#999999"/>
+
+  <!-- 树状连接线 -->
+  <path d="M 50 66 L 50 78" stroke="#cccccc" stroke-width="1" fill="none"/>
+</svg>

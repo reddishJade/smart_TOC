@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>图标生成器</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #1a73e8;
+      margin-bottom: 20px;
+    }
+
+    .icon-display {
+      display: flex;
+      gap: 40px;
+      margin: 30px 0;
+      justify-content: center;
+    }
+
+    .icon-item {
+      text-align: center;
+    }
+
+    .icon-item img {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 10px;
+      background: white;
+    }
+
+    .icon-item p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .instructions {
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .instructions h3 {
+      color: #1a73e8;
+      margin-top: 0;
+    }
+
+    ol {
+      line-height: 1.8;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 12px 24px;
+      background: #1a73e8;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .download-btn:hover {
+      background: #1557b0;
+    }
+
+    code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🎨 Smart TOC 图标生成器</h1>
+
+    <div class="instructions">
+      <h3>使用说明</h3>
+      <ol>
+        <li>选择你喜欢的颜色主题（点击下方图标）</li>
+        <li>点击"下载图标"按钮获取所有尺寸的PNG文件</li>
+        <li>将下载的文件保存到 <code>/assets/</code> 目录</li>
+        <li>确保文件名分别为 <code>icon16.png</code>、<code>icon48.png</code>、<code>icon128.png</code></li>
+      </ol>
+    </div>
+
+    <h2>默认图标（蓝色主题）</h2>
+    <div class="icon-display">
+      <div class="icon-item">
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <p>16×16</p>
+      </div>
+      <div class="icon-item">
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <p>48×48</p>
+      </div>
+      <div class="icon-item">
+        <canvas id="icon128" width="128" height="128"></canvas>
+        <p>128×128</p>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <button onclick="downloadAllIcons()" class="download-btn">下载所有图标 (PNG)</button>
+    </div>
+
+    <script>
+      // 绘制图标的函数
+      function drawIcon(canvas, size) {
+        const ctx = canvas.getContext('2d');
+        const scale = size / 128;
+
+        // 清空画布
+        ctx.clearRect(0, 0, size, size);
+
+        // 绘制背景圆形
+        ctx.fillStyle = '#1a73e8';
+        ctx.beginPath();
+        ctx.arc(64 * scale, 64 * scale, 60 * scale, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 绘制文档主体
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(38 * scale, 28 * scale, 52 * scale, 72 * scale);
+
+        // 绘制文档折角
+        ctx.fillStyle = '#f0f0f0';
+        ctx.beginPath();
+        ctx.moveTo(80 * scale, 28 * scale);
+        ctx.lineTo(90 * scale, 38 * scale);
+        ctx.lineTo(80 * scale, 38 * scale);
+        ctx.closePath();
+        ctx.fill();
+
+        // 绘制标题行
+        ctx.fillStyle = '#1a73e8';
+        ctx.globalAlpha = 0.8;
+        ctx.fillRect(44 * scale, 40 * scale, 40 * scale, 6 * scale);
+        ctx.globalAlpha = 1;
+
+        // 绘制目录项
+        const items = [
+          { y: 56, indent: false },
+          { y: 66, indent: true },
+          { y: 76, indent: true },
+          { y: 86, indent: false }
+        ];
+
+        ctx.fillStyle = '#666666';
+        items.forEach(item => {
+          // 圆点
+          ctx.beginPath();
+          ctx.arc(48 * scale, item.y * scale, 2 * scale, 0, Math.PI * 2);
+          ctx.fill();
+
+          // 文本行
+          ctx.fillStyle = '#999999';
+          const lineX = item.indent ? 62 * scale : 54 * scale;
+          const lineWidth = item.indent ? 20 * scale : 28 * scale;
+          ctx.fillRect(lineX, (item.y - 2) * scale, lineWidth, 4 * scale);
+
+          ctx.fillStyle = '#666666';
+        });
+
+        // 绘制连接线
+        ctx.strokeStyle = '#cccccc';
+        ctx.lineWidth = 1 * scale;
+        ctx.beginPath();
+        ctx.moveTo(50 * scale, 66 * scale);
+        ctx.lineTo(50 * scale, 78 * scale);
+        ctx.stroke();
+      }
+
+      // 下载单个图标
+      function downloadIcon(canvasId, filename) {
+        const canvas = document.getElementById(canvasId);
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }
+
+      // 下载所有图标
+      function downloadAllIcons() {
+        downloadIcon('icon16', 'icon16.png');
+        setTimeout(() => downloadIcon('icon48', 'icon48.png'), 100);
+        setTimeout(() => downloadIcon('icon128', 'icon128.png'), 200);
+      }
+
+      // 页面加载完成后绘制图标
+      window.addEventListener('DOMContentLoaded', () => {
+        drawIcon(document.getElementById('icon16'), 16);
+        drawIcon(document.getElementById('icon48'), 48);
+        drawIcon(document.getElementById('icon128'), 128);
+      });
+    </script>
+</body>
+
+</html>

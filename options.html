@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart TOC - 设置</title>
+  <link rel="stylesheet" href="styles/options.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🧭 Smart TOC 设置</h1>
+      <p class="subtitle">自定义你的阅读体验</p>
+    </header>
+
+    <main>
+      <!-- 欢迎页面 -->
+      <div id="welcomeSection" class="section welcome-section" style="display: none;">
+        <div class="welcome-card">
+          <h2>欢迎使用 Smart TOC！</h2>
+          <p>感谢安装 Smart TOC，一个为长文章阅读而生的智能目录扩展。</p>
+          <p>现在让我们快速设置一下，让它完美适配你的使用习惯。</p>
+        </div>
+      </div>
+
+      <!-- 核心设置 -->
+      <section class="section">
+        <h2>📋 核心功能</h2>
+
+        <div class="setting-group">
+          <div class="setting-item">
+            <label class="toggle-label">
+              <input type="checkbox" id="autoDetect" checked>
+              <span class="toggle-switch"></span>
+              <div class="setting-content">
+                <strong>智能检测文章区域</strong>
+                <p>自动识别页面的主要内容区域，过滤导航栏、侧边栏等无关内容</p>
+              </div>
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              <input type="checkbox" id="highlightCurrent" checked>
+              <span class="toggle-switch"></span>
+              <div class="setting-content">
+                <strong>高亮当前标题</strong>
+                <p>随着滚动自动高亮当前可见的标题，帮助你定位阅读位置</p>
+              </div>
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              <input type="checkbox" id="autoDarkMode" checked>
+              <span class="toggle-switch"></span>
+              <div class="setting-content">
+                <strong>自动深色模式</strong>
+                <p>根据系统主题自动切换深色/浅色模式</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 标题设置 -->
+      <section class="section">
+        <h2>🏷️ 标题设置</h2>
+
+        <div class="setting-group">
+          <div class="setting-item">
+            <label for="maxHeadingLevel" class="select-label">
+              <div class="setting-content">
+                <strong>最大标题级别</strong>
+                <p>选择要显示的标题级别范围（1为最高级）</p>
+              </div>
+            </label>
+            <select id="maxHeadingLevel" class="select-input">
+              <option value="1">H1 级别 (顶级)</option>
+              <option value="2">H1-H2 级别</option>
+              <option value="3">H1-H3 级别</option>
+              <option value="4">H1-H4 级别</option>
+              <option value="5">H1-H5 级别</option>
+              <option value="6" selected>H1-H6 级别 (全部)</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <label for="expandedLevels" class="select-label">
+              <div class="setting-content">
+                <strong>默认展开级别</strong>
+                <p>面板打开时自动展开的标题级别数</p>
+              </div>
+            </label>
+            <select id="expandedLevels" class="select-input">
+              <option value="1">仅顶级标题</option>
+              <option value="2">展开到 H2</option>
+              <option value="3" selected>展开到 H3</option>
+              <option value="4">展开到 H4</option>
+              <option value="5">展开到 H5</option>
+              <option value="6">展开全部</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- 面板设置 -->
+      <section class="section">
+        <h2>🖼️ 面板设置</h2>
+
+        <div class="setting-group">
+          <div class="setting-item">
+            <label for="panelPosition" class="select-label">
+              <div class="setting-content">
+                <strong>默认位置</strong>
+                <p>选择目录面板的默认显示位置</p>
+              </div>
+            </label>
+            <select id="panelPosition" class="select-input">
+              <option value="right">停靠右侧</option>
+              <option value="left">停靠左侧</option>
+              <option value="floating" selected>浮动居中</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <label for="panelWidth" class="range-label">
+              <div class="setting-content">
+                <strong>面板宽度</strong>
+                <p>调整目录面板的宽度</p>
+              </div>
+            </label>
+            <div class="range-container">
+              <input type="range" id="panelWidth" class="range-input" min="200" max="500" value="280" step="10">
+              <span class="range-value"><span id="widthValue">280</span> px</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 快捷键设置 -->
+      <section class="section">
+        <h2>⌨️ 快捷键</h2>
+
+        <div class="setting-group">
+          <div class="setting-item">
+            <div class="setting-content">
+              <strong>显示/隐藏目录</strong>
+              <p>使用快捷键快速切换目录显示</p>
+              <div class="shortcut-display">
+                <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>
+              </div>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-content">
+              <strong>Alt 键预览</strong>
+              <p>按住 Alt 键并将鼠标悬停在标题上可快速预览位置</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 站点管理 -->
+      <section class="section">
+        <h2>🌐 站点管理</h2>
+
+        <div class="setting-group">
+          <div class="setting-item">
+            <div class="setting-content">
+              <strong>在当前网站禁用</strong>
+              <p>如果你不想在当前网站使用 Smart TOC，可以在这里禁用</p>
+              <button id="toggleCurrentSite" class="btn-secondary small">
+                在此站点禁用 Smart TOC
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 其他设置 -->
+      <section class="section">
+        <h2>⚙️ 其他</h2>
+
+        <div class="setting-group">
+          <div class="setting-item">
+            <button id="exportSettings" class="btn-secondary">
+              📤 导出设置
+            </button>
+            <button id="importSettings" class="btn-secondary">
+              📥 导入设置
+            </button>
+            <button id="resetSettings" class="btn-danger">
+              🔄 重置为默认
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 状态显示 -->
+      <div id="statusMessage" class="status-message" style="display: none;">
+        <span id="statusText"></span>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <span>Smart TOC v1.0.0</span>
+        <a href="#" id="helpLink">帮助文档</a>
+        <a href="#" id="feedbackLink">反馈问题</a>
+      </div>
+    </footer>
+  </div>
+
+  <input type="file" id="importFileInput" accept=".json" style="display: none;">
+
+  <script src="options.js"></script>
+</body>
+
+</html>

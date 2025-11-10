@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Smart TOC",
+  "version": "1.0.0",
+  "description": "Displays a table of contents for any website, making it easier to read and navigate long articles, documentations, and online books",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Smart TOC",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["utils/storage.js", "utils/tocGenerator.js", "content.js"],
+      "css": ["styles/panel.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "options_page": "options.html",
+  "commands": {
+    "toggle-toc": {
+      "suggested_key": {
+        "default": "Alt+Shift+T",
+        "mac": "Alt+Shift+T"
+      },
+      "description": "Toggle table of contents"
+    }
+  }
+}

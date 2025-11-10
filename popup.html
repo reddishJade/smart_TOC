@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart TOC</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <h1>Smart TOC</h1>
+      <div class="version">v1.0.0</div>
+    </div>
+
+    <div class="section">
+      <button id="toggleToc" class="btn-primary">
+        <span class="icon">📑</span>
+        <span class="text">Toggle Table of Contents</span>
+      </button>
+      <p class="hint">或使用快捷键: <kbd>Alt+Shift+T</kbd></p>
+    </div>
+
+    <div class="section">
+      <h3>快速设置</h3>
+      <div class="setting-item">
+        <label>
+          <input type="checkbox" id="autoDetect" checked>
+          <span>智能检测文章区域</span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>
+          <input type="checkbox" id="highlightCurrent" checked>
+          <span>高亮当前标题</span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>
+          <input type="checkbox" id="autoDarkMode" checked>
+          <span>自动深色模式</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>标题级别</h3>
+      <select id="maxHeadingLevel">
+        <option value="6" selected>所有级别 (1-6)</option>
+        <option value="5">级别 1-5</option>
+        <option value="4">级别 1-4</option>
+        <option value="3">级别 1-3</option>
+        <option value="2">级别 1-2</option>
+        <option value="1">仅 H1</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <button id="openOptions" class="btn-secondary">
+        <span class="icon">⚙️</span>
+        <span>打开设置页面</span>
+      </button>
+    </div>
+
+    <div class="footer">
+      <p>仅在需要时运行 • 保护您的隐私</p>
+      <button id="helpButton" class="link-button">帮助</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
